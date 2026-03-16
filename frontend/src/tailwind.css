@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+@import 'tailwindcss';
+@plugin 'tailwind-scrollbar';
+
+@theme {
+	--font-Sansation: 'Outfit', sans-serif;
+	--animate-surgir-in: surgir 0.15s normal;
+	--animate-surgir-out: surgir 2s reverse;
+
+	--color-pastel-purple: #c3b1e1;
+
+	--color-white-off: #fdfaef;
+	--color-black-off: #64668c;
+	--color-green-off: #acbd6f;
+}
+
+* {
+	@apply font-Sansation;
+}
+
+/* tira o scroollbar da janela */
+html{
+	@apply scrollbar-none
+}
+
+@keyframes surgir {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 100;
+		transform: translateY(0);
+	}
+}
+
+@utility clickBTN {
+	& {
+		@apply active:translate-y-0.5;
+	}
+}
+
+@utility no-scroll-button {
+	&::-webkit-scrollbar-button {
+		display: none;
+	}
+}
+
+@utility no-scrollbar {
+	-ms-overflow-style: none; /* IE/Edge */
+	scrollbar-width: none; /* Firefox */
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
