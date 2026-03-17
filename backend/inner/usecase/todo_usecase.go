@@ -1,9 +1,9 @@
 package usecase
 
 import (
-	"app/internal/inner/contracts"
-	"app/internal/inner/entity"
-	"app/internal/inner/ports"
+	"app-todo/backend/inner/contracts"
+	"app-todo/backend/inner/entity"
+	"app-todo/backend/inner/ports"
 	"fmt"
 )
 
