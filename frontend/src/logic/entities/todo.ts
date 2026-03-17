@@ -1,8 +1,8 @@
 export interface ToDoEntity {
-	id: number;
-	desc: string;
-	status: ToDoStatus;
-	createdAt: Date;
+  id: number;
+  desc: string;
+  status: ToDoStatus;
+  createdAt: Date;
 }
 
-export type ToDoStatus = 'pendente' | 'concluida' | 'deletada';
+export type ToDoStatus = "pendente" | "concluida" | "deletada" | "todos";

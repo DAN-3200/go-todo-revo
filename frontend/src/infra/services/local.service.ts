@@ -6,9 +6,8 @@ export class ToDoLocalService {
     status: ToDoStatus | "todos",
   ): Promise<ToDoEntity> => {
     const response = await wails.SaveToDo({
-      title: "",
-      content: "",
-      status: false,
+      desc: "",
+      status: status,
     });
     return { id: response, createdAt: new Date(), desc: "", status: status };
   };
@@ -22,7 +21,6 @@ export class ToDoLocalService {
   static EditToDo = async (todo: Partial<ToDoEntity>): Promise<void> => {
     await wails
       .EditToDo(todo.id!, {
-        id: todo.id!,
         desc: todo.desc!,
         status: todo.status,
       })

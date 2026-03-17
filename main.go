@@ -24,8 +24,9 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	repo.CreateTable()
 	uc := usecase.InitLayer(repo) 
-	todo := handlers.InitLayer(uc)
+	todo := handlers.InitLayer(*uc)
 
 	// Create application with options
 	err = wails.Run(&options.App{

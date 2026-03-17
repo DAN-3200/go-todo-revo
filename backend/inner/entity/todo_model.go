@@ -1,27 +1,23 @@
 package entity
 
 import (
-	"time"
+	"app-todo/backend/inner/vo"
 	"strings"
+	"time"
 )
 
-
 type ToDo struct {
-	ID        int64     `json:"id"`
-	Title     string    `json:"title"`
-	Content   string    `json:"content"`
-	Status    bool      `json:"status"`
-	CreatedAt time.Time `json:"created_at"`
+	ID        int64
+	Desc      string
+	Status    string
+	CreatedAt time.Time
 }
 
-func NewToDo(title string, content string) *ToDo {
+func NewToDo(content string) *ToDo {
 	return &ToDo{
-		ID: 0,
-		Title: strings.ToLower(title),
-		Content: strings.ToLower(content),
-		Status: false,
+		ID:        0,
+		Desc:      strings.ToLower(content),
+		Status:    vo.Pendente,
 		CreatedAt: time.Now(),
 	}
 }
-
-

@@ -6,30 +6,26 @@ import (
 )
 
 type ToDoReq struct {
-	Title   string `json:"title" binding:"required"`
-	Content string `json:"content" binding:"required"`
-	Status  bool   `json:"status"`
+	Desc   string `json:"desc" binding:"required"`
+	Status string `json:"status"`
 }
 
 type ToDoRes struct {
 	ID        int64     `json:"id"`
-	Title     string    `json:"title"`
-	Content   string    `json:"content"`
-	Status    bool      `json:"status"`
-	CreatedAt time.Time `json:"created_at"`
+	Desc      string    `json:"desc"`
+	Status    string    `json:"status"`
+	CreatedAt time.Time `json:"createdAt"`
 }
 
 type ToDoEditReq struct {
-	Title   *string `json:"title"`
-	Content *string `json:"content"`
-	Status  *bool   `json:"status"`
+	Desc   *string `json:"desc"`
+	Status *string `json:"status"`
 }
 
 func ToToDoRes(t entity.ToDo) ToDoRes {
 	return ToDoRes{
 		ID:        t.ID,
-		Title:     t.Title,
-		Content:   t.Content,
+		Desc:      t.Desc,
 		Status:    t.Status,
 		CreatedAt: t.CreatedAt,
 	}

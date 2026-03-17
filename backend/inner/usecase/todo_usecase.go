@@ -20,7 +20,7 @@ func InitLayer(repository ports.Irepository[entity.ToDo]) *LayerUseCase {
 // ------------------------------------------------------------------
 
 func (it *LayerUseCase) SaveToDo(info contracts.ToDoReq) (int64, error) {
-	todo := entity.NewToDo(info.Title, info.Content)
+	todo := entity.NewToDo(info.Desc)
 	id, err := it.Repo.Save(*todo)
 
 	if err != nil {
@@ -39,13 +39,15 @@ func (it *LayerUseCase) GetToDo(id int64) (contracts.ToDoRes, error) {
 	return contracts.ToToDoRes(result), err
 }
 
-func (it *LayerUseCase) GetToDoList() ([]contracts.ToDoRes, error) {
+func (it *LayerUseCase) GetToDoList() (*[]contracts.ToDoRes, error) {
 	result, err := it.Repo.GetList()
 	if err != nil {
-		return []contracts.ToDoRes{}, err
+		return nil, err
 	}
 
-	return contracts.ToToDoResList(result), nil
+	obj := contracts.ToToDoResList(result)
+
+	return &obj, nil
 }
 
 func (it *LayerUseCase) EditToDo(id int64, info contracts.ToDoEditReq) error {
@@ -53,15 +55,10 @@ func (it *LayerUseCase) EditToDo(id int64, info contracts.ToDoEditReq) error {
 	todo, err := it.Repo.Get(id)
 	if err != nil {
 		return fmt.Errorf("não há elemento com tal id")
-
 	}
 
-	if info.Title != nil {
-		todo.Title = *info.Title
-	}
-
-	if info.Content != nil {
-		todo.Content = *info.Content
+	if info.Desc != nil {
+		todo.Desc = *info.Desc
 	}
 
 	if info.Status != nil {

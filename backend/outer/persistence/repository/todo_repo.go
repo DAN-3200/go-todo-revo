@@ -28,7 +28,7 @@ func InitLayer(connection *sql.DB) (*LayerRepository, error) {
 // ------------------------------------------------------------------
 
 func (it *LayerRepository) Save(info entity.ToDo) (int64, error) {
-	q := psql.Insert("todo").Columns("title", "content", "status").Values(info.Title, info.Content, info.Status).Suffix("RETURNING id")
+	q := psql.Insert("todo").Columns("desc", "status").Values(info.Desc, info.Status).Suffix("RETURNING id")
 	query, args, err := q.ToSql()
 
 	var id int64
@@ -41,15 +41,14 @@ func (it *LayerRepository) Save(info entity.ToDo) (int64, error) {
 }
 
 func (it *LayerRepository) Get(id int64) (entity.ToDo, error) {
-	q := psql.Select("id", "title", "content", "status", "created_at").From("todo").Where(sq.Eq{"id": id})
+	q := psql.Select("id", "desc", "status", "created_at").From("todo").Where(sq.Eq{"id": id})
 	query, args, err := q.ToSql()
 	row := it.DB.QueryRow(query, args...)
 
 	var todo entity.ToDo
 	err = row.Scan(
 		&todo.ID,
-		&todo.Title,
-		&todo.Content,
+		&todo.Desc,
 		&todo.Status,
 		&todo.CreatedAt,
 	)
@@ -68,7 +67,7 @@ func (it *LayerRepository) Get(id int64) (entity.ToDo, error) {
 }
 
 func (it *LayerRepository) GetList() ([]entity.ToDo, error) {
-	q := psql.Select("id", "title", "content", "status", "created_at").From("todo")
+	q := psql.Select("id", "desc", "status", "created_at").From("todo")
 	query, _, err := q.ToSql()
 	rows, err := it.DB.Query(query)
 	defer rows.Close()
@@ -82,8 +81,7 @@ func (it *LayerRepository) GetList() ([]entity.ToDo, error) {
 	for rows.Next() {
 		var err = rows.Scan(
 			&todo.ID,
-			&todo.Title,
-			&todo.Content,
+			&todo.Desc,
 			&todo.Status,
 			&todo.CreatedAt,
 		)
@@ -98,8 +96,7 @@ func (it *LayerRepository) GetList() ([]entity.ToDo, error) {
 
 func (it *LayerRepository) Edit(info entity.ToDo) error {
 	q := psql.Update("todo").
-		Set("title", info.Title).
-		Set("content", info.Content).
+		Set("desc", info.Desc).
 		Set("status", info.Status).
 		Where(sq.Eq{"id": info.ID})
 
@@ -135,12 +132,11 @@ func (it *LayerRepository) Delete(id int64) error {
 func (it *LayerRepository) CreateTable() error {
 	_, err := it.DB.Exec(`
 		CREATE TABLE IF NOT EXISTS todo (
-			id SERIAL PRIMARY KEY,
-			title TEXT,
-			content TEXT,
-			status BOOLEAN,
-			created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-		);	
+			id INTEGER PRIMARY KEY AUTOINCREMENT,
+			desc TEXT,
+			status TEXT,
+			created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+		);
 	`,
 	)
 

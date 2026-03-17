@@ -21,7 +21,7 @@ func GetDB() *sql.DB {
 			panic("failed to get user config dir: " + err.Error())
 		}
 
-		appDir := filepath.Join(dataDir, "db-lemure")
+		appDir := filepath.Join(dataDir, "db-go-lemure")
 		if err := os.MkdirAll(appDir, 0o755); err != nil {
 			panic("failed to create app dir: " + err.Error())
 		}

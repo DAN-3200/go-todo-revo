@@ -1,9 +1,8 @@
 export namespace contracts {
 	
 	export class ToDoEditReq {
-	    title?: string;
-	    content?: string;
-	    status?: boolean;
+	    desc?: string;
+	    status?: string;
 	
 	    static createFrom(source: any = {}) {
 	        return new ToDoEditReq(source);
@@ -11,15 +10,13 @@ export namespace contracts {
 	
 	    constructor(source: any = {}) {
 	        if ('string' === typeof source) source = JSON.parse(source);
-	        this.title = source["title"];
-	        this.content = source["content"];
+	        this.desc = source["desc"];
 	        this.status = source["status"];
 	    }
 	}
 	export class ToDoReq {
-	    title: string;
-	    content: string;
-	    status: boolean;
+	    desc: string;
+	    status: string;
 	
 	    static createFrom(source: any = {}) {
 	        return new ToDoReq(source);
@@ -27,18 +24,16 @@ export namespace contracts {
 	
 	    constructor(source: any = {}) {
 	        if ('string' === typeof source) source = JSON.parse(source);
-	        this.title = source["title"];
-	        this.content = source["content"];
+	        this.desc = source["desc"];
 	        this.status = source["status"];
 	    }
 	}
 	export class ToDoRes {
 	    id: number;
-	    title: string;
-	    content: string;
-	    status: boolean;
+	    desc: string;
+	    status: string;
 	    // Go type: time
-	    created_at: any;
+	    createdAt: any;
 	
 	    static createFrom(source: any = {}) {
 	        return new ToDoRes(source);
@@ -47,10 +42,9 @@ export namespace contracts {
 	    constructor(source: any = {}) {
 	        if ('string' === typeof source) source = JSON.parse(source);
 	        this.id = source["id"];
-	        this.title = source["title"];
-	        this.content = source["content"];
+	        this.desc = source["desc"];
 	        this.status = source["status"];
-	        this.created_at = this.convertValues(source["created_at"], null);
+	        this.createdAt = this.convertValues(source["createdAt"], null);
 	    }
 	
 		convertValues(a: any, classs: any, asMap: boolean = false): any {
