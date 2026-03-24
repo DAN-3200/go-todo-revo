@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	_ "github.com/lib/pq" // Importar drive
-	"app-todo/backend/inner/entity"
+	"app-todo/internal/inner/entity"
 
 	sq "github.com/Masterminds/squirrel"
 )

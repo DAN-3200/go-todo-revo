@@ -1,10 +1,10 @@
 package main
 
 import (
-	"app-todo/backend/inner/usecase"
-	"app-todo/backend/outer/handlers"
-	"app-todo/backend/outer/persistence/db"
-	"app-todo/backend/outer/persistence/repository"
+	"app-todo/internal/inner/usecase"
+	"app-todo/internal/outer/handlers"
+	"app-todo/internal/outer/persistence/db"
+	"app-todo/internal/outer/persistence/repository"
 	"embed"
 
 	"github.com/wailsapp/wails/v2"
@@ -12,7 +12,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 )
 
-//go:embed all:frontend/dist
+//go:embed all:external/dist
 var assets embed.FS
 
 func main() {

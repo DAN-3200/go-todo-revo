@@ -1,7 +1,7 @@
 package contracts
 
 import (
-	"app-todo/backend/inner/entity"
+	"app-todo/internal/inner/entity"
 	"time"
 )
 

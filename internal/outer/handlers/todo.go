@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"app-todo/backend/inner/contracts"
-	"app-todo/backend/inner/usecase"
+	"app-todo/internal/inner/contracts"
+	"app-todo/internal/inner/usecase"
 	"context"
 )
 

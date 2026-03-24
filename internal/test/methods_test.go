@@ -1,11 +1,11 @@
 package test_test
 
 import (
-	"app-todo/backend/inner/contracts"
-	"app-todo/backend/inner/usecase"
-	"app-todo/backend/outer/handlers"
-	"app-todo/backend/outer/persistence/db"
-	"app-todo/backend/outer/persistence/repository"
+	"app-todo/internal/inner/contracts"
+	"app-todo/internal/inner/usecase"
+	"app-todo/internal/outer/handlers"
+	"app-todo/internal/outer/persistence/db"
+	"app-todo/internal/outer/persistence/repository"
 	"fmt"
 	"testing"
 )

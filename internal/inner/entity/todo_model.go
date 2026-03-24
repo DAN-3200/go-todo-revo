@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"app-todo/backend/inner/vo"
+	"app-todo/internal/inner/vo"
 	"strings"
 	"time"
 )
