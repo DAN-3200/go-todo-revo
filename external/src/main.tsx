@@ -1,19 +1,12 @@
 import './tailwind.css';
-import { createRoot } from 'react-dom/client';
-import { StrictMode } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import ToDoApp from './views/app';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import AuthPage from './components/auth/AuthPage';
 
-// const ManagerRouter = createBrowserRouter([
-// 	{
-// 		path: '/',
-// 		element: <ToDoApp />,
-// 	},
-// ]);
-
-createRoot(document.getElementById('root')!).render(
-	<StrictMode>
-		<ToDoApp />
-		{/* <RouterProvider router={ManagerRouter} /> */}
-	</StrictMode>,
+ReactDOM.createRoot(document.getElementById('root')!).render(
+	<React.StrictMode>
+		{/* <AuthPage/> */}
+		<App />
+	</React.StrictMode>,
 );

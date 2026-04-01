@@ -1,61 +1,56 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import 'tailwindcss';
 
-@import "tailwindcss";
-@plugin 'tailwind-scrollbar';
+@layer base {
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
 
-@theme {
-  --font-Sansation: "Outfit", sans-serif;
-  --animate-surgir-in: surgir 0.15s normal;
-  --animate-surgir-out: surgir 2s reverse;
+	html,
+	body,
+	#root {
+		height: 100%;
+		overflow: hidden;
+	}
 
-  --color-pastel-purple: #c3b1e1;
+	body {
+		@apply font-sans text-zinc-900 antialiased bg-zinc-100;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
 
-  --color-white-off: #fdfaef;
-  --color-black-off: #64668c;
-  --color-green-off: #acbd6f;
+	/* Custom scrollbar */
+	::-webkit-scrollbar {
+		width: 3px;
+		height: 3px;
+	}
+	::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	::-webkit-scrollbar-thumb {
+		@apply bg-zinc-300;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		@apply bg-zinc-400;
+	}
+
+	/* Remove default textarea/input outlines — we handle them via Tailwind */
+	textarea,
+	input {
+		outline: none;
+	}
 }
 
-* {
-  @apply font-Sansation;
+@layer utilities {
+	.line-clamp-2 {
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
 }
 
-/* tira o scroollbar da janela */
-html {
-  @apply scrollbar-none;
-}
-
-@keyframes surgir {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 100;
-    transform: translateY(0);
-  }
-}
-
-@utility clickBTN {
-  & {
-    @apply active:translate-y-0.5;
-  }
-}
-
-@utility no-scroll-button {
-  &::-webkit-scrollbar-button {
-    display: none;
-  }
-}
-
-@utility no-scrollbar {
-  -ms-overflow-style: none; /* IE/Edge */
-  scrollbar-width: none; /* Firefox */
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-.titleBar {
-  --wails-draggable: "drag";
+@utility wails-draggable {
+	--wails-draggable: drag;
 }

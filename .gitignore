@@ -1,5 +1,5 @@
 build/bin
 node_modules
-frontend/dist
+external/dist
 build/
-frontend/wailsjs/runtime
+external/wailsjs/runtime
